@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 });
 
 //Cloud Database Connection
-var uri = 'mongodb://fortysixntwo:webproject2017@ds163667.mlab.com:63667/web-project-2017';
+var uri = 'mongodb://admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017';
 mongodb.MongoClient.connect(uri, function(err, db) {
   if(err) throw err;
 });
