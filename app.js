@@ -6,11 +6,15 @@ var cookieParser = require('cookie-parser'); // Gia ta cookies
 var bodyParser = require('body-parser'); //pairnei to body apo html request
 var mongodb = require('mongodb');
 var monk = require('monk');
-var db = monk('admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017')
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 
+//Cloud Database Connection
+var uri = 'admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017';
+var db = monk(uri);
+
+//App instantiation
 var app = express();
 
 // view engine setup
@@ -24,6 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -46,16 +57,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
-//Cloud Database Connection
-var uri = 'mongodb://admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017';
-mongodb.MongoClient.connect(uri, function(err, db) {
-  if(err) throw err;
-});
 
 module.exports = app;
