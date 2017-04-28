@@ -4,9 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser'); // Gia ta cookies
 var bodyParser = require('body-parser'); //pairnei to body apo html request
+var mongodb = require('mongodb');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+
 
 var app = express();
 
@@ -42,5 +44,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Cloud Database Connection
+var uri = 'mongodb://fortysixntwo:webproject2017@ds163667.mlab.com:63667/web-project-2017';
+mongodb.MongoClient.connect(uri);
 
 module.exports = app;
