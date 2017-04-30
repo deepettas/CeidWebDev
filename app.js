@@ -1,3 +1,4 @@
+//Import modules
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -34,7 +35,6 @@ app.use(function(req,res,next){
     req.db = db;
     next();
 });
-
 
 app.use('/', index);
 app.use('/users', users);
