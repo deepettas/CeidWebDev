@@ -10,4 +10,19 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+/*
+POST to adduser.
+*/
+//Sending the added user to the db
+router.post('/adduser', function(req, res) {
+    var db = req.db;
+    var collection = db.get('usercollection');
+    //insert function executes the insertion
+    collection.insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+});
+
 module.exports = router;
