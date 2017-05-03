@@ -9,7 +9,7 @@ var mongodb = require('mongodb');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-
+//Db Configuration
 var db = require('./db/config');
 var models = require('./db/model');
 
