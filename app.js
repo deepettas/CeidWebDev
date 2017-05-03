@@ -6,7 +6,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser'); // Gia ta cookies
 var bodyParser = require('body-parser'); //pairnei to body apo html request
 var mongodb = require('mongodb');
-var monk = require('monk');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
