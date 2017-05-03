@@ -19,4 +19,3 @@ const employee = db.create('Employee');
 
 
 
-module.exports = models;
