@@ -2,7 +2,7 @@
  * Created by nomaterials on 03/05/2017.
  */
 
-var db = require('./db/config');
+var db = require('./config');
 
 
 const adminCP = db.create('AdminControlPanel');
