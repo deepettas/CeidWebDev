@@ -11,9 +11,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 
-//Cloud Database Connection
-var uri = 'admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017';
-var db = monk(uri);
+var db = require('./db/config');
+var models = require('./db/model');
 
 //App instantiation
 var app = express();

@@ -31,7 +31,6 @@ function populateTable() {
         userListData = data;
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
-
             tableContent += '<tr>';
             tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + this.username + '</a></td>';
             tableContent += '<td>' + this.email + '</td>';
