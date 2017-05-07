@@ -9,9 +9,8 @@ var mongodb = require('mongodb');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-//Db Configuration
+//Db Configuration & init
 var db = require('./db/config');
-var models = require('./db/model');
 
 //App instantiation
 var app = express();
@@ -34,6 +33,7 @@ app.use(function(req,res,next){
     next();
 });
 
+//parent route - router linking
 app.use('/', index);
 app.use('/users', users);
 
