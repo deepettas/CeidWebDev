@@ -4,16 +4,21 @@
 
 var mongoose = require('mongoose');
 
-//mongoose.connection.db.dropDatabase();
-
 // Schema [ Model ] ~= Layout for a model
 
 // Schema/Model Initialization
-var adminSchema = mongoose.Schema({
+var AdminSchema = mongoose.Schema({
     username: String,
     password: String
 });
-var Admin = mongoose.model("Admin", adminSchema);
+var Admin = mongoose.model("Admin", AdminSchema);
+// Create instance of admin # Testing
+var admin1 = new Admin({ username: 'JoBell2312',
+                         password: 'hashmehashme'
+                       });
+// Save to MongoDB
+admin1.save();
+
 //----------------------------------------------------------------
 
 // Employee
@@ -25,7 +30,6 @@ var Employee = mongoose.model("Employee",EmployeeSchema)
 
 //----------------------------------------------------------------
 
-
 // Local Store
 var LocalStoreSchema = mongoose.Schema({
 
@@ -33,7 +37,6 @@ var LocalStoreSchema = mongoose.Schema({
 var LocalStore = mongoose.model("LocalStore",LocalStoreSchema)
 
 //----------------------------------------------------------------
-
 
 //Transit Hub
 var TransitHubSchema = mongoose.Schema({
@@ -71,25 +74,14 @@ var AdminControlPanelSchema = mongoose.Schema({
 var AdminControlPanel = mongoose.model("AdminControlPanel",AdminControlPanelSchema)
 //----------------------------------------------------------------
 
-// Create instance of admin # Testing
-var admin1 = new Admin({ username: 'JoBell2312',
-                         password: 'hashmehashme'});
-// Save to MongoDB
-admin1.save();
 
-var models = mongoose.connection.collections;
-var mmodels = mongoose.models;
-//console.log(models);
-//console.log(mmodels);
-
-// Dropping all collections
-for ( collection in mongoose.connection.collections ) {
-    mongoose.connection.collections[collection].drop( function(err) {
-        console.log('collection dropped');
-    });
+//Every model defined above is saved as an object and exporteds
+var modelExport = {};
+for( name of mongoose.modelNames()) {
+    modelExport[name] = mongoose.model(name);
 }
 
 
-module.exports = {adminCP: Admin,
-                  employee: Employee};
+//All our models are exported here
+module.exports = modelExport;
 
