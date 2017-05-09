@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 
-
+//mongoose.connection.db.dropDatabase();
 
 // Schema [ Model ] ~= Layout for a model
 
@@ -77,44 +77,19 @@ var admin1 = new Admin({ username: 'JoBell2312',
 // Save to MongoDB
 admin1.save();
 
-var models = mongoose.modelNames();
+var models = mongoose.connection.collections;
 var mmodels = mongoose.models;
+//console.log(models);
+//console.log(mmodels);
 
-for (model in models){
-    dropCollection(model)
+// Dropping all collections
+for ( collection in mongoose.connection.collections ) {
+    mongoose.connection.collections[collection].drop( function(err) {
+        console.log('collection dropped');
+    });
 }
-console.log(mongoose.modelNames());
 
 
 module.exports = {adminCP: Admin,
                   employee: Employee};
 
-
-function dropCollection (modelName) {
-    if (!modelName || !modelName.length) {
-        Promise.reject(new Error('You must provide the name of a model.'));
-    }
-
-    try {
-        var model = mongoose.model(modelName);
-        var collection = mongoose.connection.collections[model.collection.collectionName];
-    } catch (err) {
-        return Promise.reject(err);
-    }
-
-    return new Promise(function (resolve, reject) {
-        collection.drop(function (err) {
-            if (err) {
-                reject(err);
-                return;
-            }
-
-            // Remove mongoose's internal records of this
-            // temp. model and the schema associated with it
-            delete mongoose.models[modelName];
-            delete mongoose.modelSchemas[modelName];
-
-            resolve();
-        });
-    });
-}
