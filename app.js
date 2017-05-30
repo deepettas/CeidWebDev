@@ -5,6 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser'); // Gia ta cookies
 var bodyParser = require('body-parser'); //pairnei to body apo html request
+var multer = require('multer');
+var upload = multer();
 var mongodb = require('mongodb');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -15,17 +17,18 @@ var db = require('./db/config');
 //App instantiation
 var app = express();
 
-// view engine setup
+// view engine setup (PUG/Jade)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());  // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: false }));  // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(upload.array());  // for parsing multipart/form-data
+app.use(express.static(path.join(__dirname, 'public')));  //enable static file serving
 
 // Make our db accessible to our router
 app.use(function(req,res,next){
