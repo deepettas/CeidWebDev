@@ -11,7 +11,7 @@ var upload = multer();
 var mongodb = require('mongodb');
 var index = require('./routes/index');
 var admin = require('./routes/admin');
-var users = require('./routes/users');
+var user = require('./routes/user');
 
 //Db Configuration & init
 var db = require('./db/config');
@@ -46,10 +46,7 @@ app.use(function(req,res,next){
 // ROUTER LINKING
 app.use('/', index);
 app.use('/admin', admin);
-app.use('/users', users);
-
-
-
+app.use('/user', user);
 
 
 

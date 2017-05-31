@@ -12,6 +12,7 @@ var uri = 'admin:webprojectadmin@ds163667.mlab.com:63667/web-project-2017';
 // Create the database connection
 mongoose.connect(uri);
 
+
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', function () {
