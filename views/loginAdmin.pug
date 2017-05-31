@@ -1,0 +1,13 @@
+//
+   Created by nomaterials on 31/05/2017.
+
+html
+    head
+        title Admin Log In
+    body
+        if(message)
+            h4 #{message}
+        form(action="/loginAdmin" method="POST")
+            input(name="id" type="text" required placeholder="Admin ID")
+            input(name="password" type="password" required placeholder="Password")
+            button(type="Submit") Log In

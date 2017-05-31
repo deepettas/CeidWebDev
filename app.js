@@ -40,13 +40,15 @@ app.use(function(req,res,next){
 });
 
 
+// THIS IS TEMP!!! SHOULD BE STORED IN DB!!!!
 var Admins = [];
 
-//Show admin signup view
+// Show admin signup view
 app.get('/signupAdmin', function(req, res) {
     res.render('signupAdmin');
 });
 
+// Admin Signup method
 app.post('/signupAdmin', function(req, res) {
     if( !req.body.id || !req.body.password ) {
         res.status("400");
@@ -63,6 +65,59 @@ app.post('/signupAdmin', function(req, res) {
         res.redirect('/adminPanel');
     }
 });
+
+function checkSignIn(req, res, next) {
+    if( req.session.admin ) {  // if session exists, proceed to next page
+        next();
+    } else {
+        var err = new Error("Not logged in!");
+        console.log(req.session.admin);
+        next(err);  // error trying to access unauthorized page!!! INTRUDER ALERT
+    }
+}
+
+// Show Admin Panel
+app.get('/adminPanel', checkSignIn, function(req, res) {
+    res.render('adminPanel', {id: req.session.admin.id});  // render view passing user id stored in session
+});
+
+
+// Show Admin Login View
+app.get('/loginAdmin', function (req, res) {
+    res.render('loginAdmin');
+});
+
+// Admin Login method
+app.post('/loginAdmin', function (req, res) {
+    console.log(Admins);
+    if( !req.body.id || !req.body.password ) {
+        res.render('loginAdmin', {message: "Please enter both id and password"});
+    } else {
+        Admins.filter(function(admin) {
+            if( admin.id == req.body.id && admin.password == req.body.password ) {
+                req.session.admin = admin;
+                res.redirect('/adminPanel');
+            }
+        });
+        res.render('loginAdmin', {message: "Invalid Credentials"});
+    }
+});
+
+// Admin Logout route
+app.get('/logoutAdmin', function(req, res) {
+    req.session.destroy(function() {  // destroy session linked to that admin
+        console.log("Admin logged out");
+    });
+    res.redirect('/loginAdmin');  // nav back to Admin login page
+});
+
+// Middleware for handling unauthorised admin access attempts
+app.use('/adminPanel', function(err, req, res, next) {
+    console.log(err);
+    res.redirect('/loginAdmin');  //admin should be authenticated, nav him back to login
+});
+
+
 
 
 // ROUTER LINKING
