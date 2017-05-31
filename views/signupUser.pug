@@ -1,0 +1,13 @@
+//
+   Created by nomaterials on 31/05/2017.
+
+html
+    head
+        title User Signup
+    body
+        if( message )
+            h4 #{message}
+        form(action="/user/signup" method="POST")
+            input(name="id" type="text" required placeholder="User ID")
+            input(name="password" type="password" required placeholder="Password")
+            button(type="Submit") Sign Up
