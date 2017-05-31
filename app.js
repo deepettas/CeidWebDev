@@ -19,8 +19,8 @@ var db = require('./db/config');
 var app = express();
 
 // view engine setup (PUG/Jade)
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 // STARTUP MIDDLEWARE
 // uncomment after placing your favicon in /public
@@ -54,7 +54,7 @@ app.post('/signupAdmin', function(req, res) {
     } else {
         Admins.filter(function(admin) {
             if( admin.id == req.body.id ) {
-                res.render('signup', {message: "Admin already exists! Login or choose another admin id"});
+                res.render('signupAdmin', {message: "Admin already exists! Login or choose another admin id"});
             }
         });
         var newAdmin = {id: req.body.id, password: req.body.password};
