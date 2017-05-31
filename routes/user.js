@@ -6,7 +6,7 @@ var Users = [];
 
 // Show User signup View
 router.get('/signup', function(req, res) {
-    res.render('signupUser');
+    res.render('user/signupUser');
 });
 
 // User Signup method
@@ -17,13 +17,13 @@ router.post('/signup', function(req, res) {
     } else {
         Users.filter(function(user) {
             if( user.id == req.body.id ) {
-                res.render('signupUser', {message: "User already exists! Login or choose another user id"});
+                res.render('user/signupUser', {message: "User already exists! Login or choose another user id"});
             }
         });
         var newUser = {id: req.body.id, password: req.body.password};
         Users.push(newUser);
         req.session.user = newUser;
-        res.redirect('/user/panel');
+        res.redirect('panel');
     }
 });
 
@@ -40,12 +40,12 @@ function checkSignIn(req, res, next) {
 
 // Show User Panel
 router.get('/panel', checkSignIn, function(req, res) {
-    res.render('userPanel', {id: req.session.user.id});  // render view passing user id stored in session
+    res.render('user/userPanel', {id: req.session.user.id});  // render view passing user id stored in session
 });
 
 // Show User Login View
 router.get('/login', function (req, res) {
-    res.render('loginUser');
+    res.render('user/loginUser');
 });
 
 
@@ -53,15 +53,15 @@ router.get('/login', function (req, res) {
 router.post('/login', function (req, res) {
     console.log(Users);
     if( !req.body.id || !req.body.password ) {
-        res.render('loginUser', {message: "Please enter both id and password"});
+        res.render('user/loginUser', {message: "Please enter both id and password"});
     } else {
         Users.filter(function(user) {
             if( user.id == req.body.id && user.password == req.body.password ) {
-                req.session.admin = admin;
-                res.redirect('/user/panel');
+                req.session.user = user;
+                res.redirect('panel');
             }
         });
-        res.render('loginUser', {message: "Invalid Credentials"});
+        res.render('user/loginUser', {message: "Invalid Credentials"});
     }
 });
 
@@ -71,13 +71,13 @@ router.get('/logout', function(req, res) {
     req.session.destroy(function() {  // destroy session linked to that admin
         console.log("User logged out");
     });
-    res.redirect('/user/login');  // nav back to Admin login page
+    res.redirect('login');  // nav back to User login page
 });
 
 // Middleware for handling unauthorised user access attempts
 router.use('/panel', function(err, req, res, next) {
     console.log(err);
-    res.redirect('/admin/login');  //user should be authenticated, nav him back to login
+    res.redirect('login');  //user should be authenticated, nav him back to login
 });
 
 
