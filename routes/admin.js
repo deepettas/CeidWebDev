@@ -5,6 +5,8 @@
 var express = require('express');
 var router = express.Router();
 
+var Admin = require('./db/models/Admin');
+
 
 // THIS IS TEMP!!! SHOULD BE STORED IN DB!!!!
 var Admins = [];

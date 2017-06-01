@@ -38,10 +38,3 @@ process.on('SIGINT', function() {
         process.exit(0);
     });
 });
-
-
-//Models/Schemas
-var models = require('./model');
-
-
-module.exports = models;

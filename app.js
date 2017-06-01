@@ -33,13 +33,6 @@ app.use(upload.array());  // for parsing multipart/form-data
 app.use(express.static(path.join(__dirname, 'public')));  //enable static file serving
 app.use(session({secret: "Your secret key"}));
 
-// Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
-
 
 
 // ROUTER LINKING
