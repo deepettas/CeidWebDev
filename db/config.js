@@ -18,7 +18,7 @@ mongoose.connect(uri);
 mongoose.connection.on('connected', function () {
     console.log('Mongoose default connection open to ' + uri);
     //Drop the DB
-    mongoose.connection.db.dropDatabase();
+    //mongoose.connection.db.dropDatabase();
 });
 
 // If the connection throws an error
