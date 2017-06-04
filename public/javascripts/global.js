@@ -6,7 +6,6 @@ var THempListData = [];
 
 // DOM Ready =============================================================
 $(document).ready(function() {
-
     // Populate the user table on initial page load
     populateTable();
     // Username link click

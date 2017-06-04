@@ -12,8 +12,6 @@ var SALT_WORK_FACTOR = 10;
 
 
 var AdminSchema = Schema({
-
-
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true}
 });

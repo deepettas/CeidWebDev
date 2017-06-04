@@ -12,7 +12,9 @@ var flash = require('connect-flash');  //for flash messages
 var mongodb = require('mongodb');
 var index = require('./routes/index');
 var admin = require('./routes/admin');
-var user = require('./routes/user');
+var Ls_emp = require('./routes/Ls_emp');
+var Th_emp = require('./routes/Th_emp');
+
 
 //Db Configuration & init
 var db = require('./db/config');
@@ -40,7 +42,8 @@ app.use(session({secret: "Your secret key"}));
 // ROUTER LINKING
 app.use('/', index);
 app.use('/admin', admin);
-app.use('/user', user);
+app.user('/LS', Ls_emp);
+app.user('/TH', Th_emp);
 
 
 

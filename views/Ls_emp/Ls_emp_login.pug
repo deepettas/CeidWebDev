@@ -1,0 +1,15 @@
+//
+   Created by fortysixntwo on 04/06/2017.
+
+html
+    head
+        title Local Store Employee Login
+    body
+        if(message)
+            h4 #{message}
+        form(action="/user/login" method="POST")
+            input(name="id" type="text" required placeholder="User ID")
+            input(name="password" type="password" required placeholder="Password")
+            button(type="Submit") Log In
+
+
