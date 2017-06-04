@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+//TODO: !!!!! DELETE SIGNUP ROUTE AND VIEWS AND ALSO SPLIT USER INTO 'LS EMP' & 'TH EMP'
+
+
 // THIS IS ALSO TEMP!!
 var Users = [];
 

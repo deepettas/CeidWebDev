@@ -4,8 +4,37 @@
 html
     head
         title Admin Panel
+
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+        script(src='/javascripts/global.js')
+
+
     body
         h1 Admin Panel
         div Hey #{id}, long time no see brah
         div Wanna logout?
         a(href="/admin/logout") Logout
+
+        #TransitHubEmp
+            //#TransitHubEmpInfo  TODO: not that imp but yea
+            //h2 Transit Hub Employees
+            //p
+            //    strong Username:
+            //    |   <span id='THEMPusername'></span>
+
+            h2 Transit Hub Employee List
+            #TransitHubEmpList
+                table
+                    thead
+                        th Username
+                        th Delete?
+                    tbody
+            // EmpList
+
+            h2 Add Transit Hub Employee
+            #TransitHubEmpAdd
+                fieldset
+                    input#inputTHEMPusername(name = 'username', type='text', placeholder='Username')
+                    br
+                    input#inputTHEMPpassword(name = 'password', type='password', placeholder='Password')
+                    button#btnAddTHemp Add Employee

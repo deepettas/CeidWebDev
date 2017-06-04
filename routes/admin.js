@@ -6,6 +6,7 @@ var express = require('express');
 var router = express.Router();
 
 var Admin = require('../db/models/Admin');
+var THemp = require('..db/models/TransitHubEmp');
 
 
 
@@ -106,6 +107,48 @@ router.use('/panel', function(err, req, res, next) {
     console.log(err);
     res.redirect('login');  //admin should be authenticated, nav him back to login
 });
+
+
+//--------PANEL ROUTES---------
+
+//TODO: MOVE THIS ROUTE TO ACCORDING ROUTE FILE WITH TH employee filename
+//Get all Transit Hub Emp from
+router.get('/panel/listTHemp', function(req, res) {
+    THemp.find({},{},function(e,docs){
+        res.json(docs);
+    });
+});
+
+
+//transit hub employee add
+router.post('/panel/addTHemp', function(req, res) {
+
+    //Get our form values
+    var userName = req.body.username;
+    var password = req.body.password;
+
+    THemp.insert({
+        "username" : userName,
+        "password" : password
+    }, function (err, doc) {
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+});
+
+
+router.delete('/panel/deleteTHemp/:id', function (req, res) {
+    var THempToDelete = req.params.id;
+    THemp.remove({ '_id' : THempToDelete }, function(err) {
+        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+    });
+});
+
+
+
+
+
 
 
 
