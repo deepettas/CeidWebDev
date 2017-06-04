@@ -8,9 +8,23 @@ var Schema = mongoose.Schema;
 
 
 var PackageSchema = Schema({
-    Sender_id: {type: Schema.ObjectId, ref: 'Sender', required:true},
-    Recipient_id: {type: Schema.ObjectId, ref: 'Recipient', required:true},
-    Transit_hub_id: {type: Schema.ObjectId, ref: 'TransitHub', required:true}
+    sender_id: {type: Schema.ObjectId, ref: 'Sender', required: true},
+    recipient_id: {type: Schema.ObjectId, ref: 'Recipient', required: true},
+    transit_hub_id: {type: Schema.ObjectId, ref: 'TransitHub', required: true},
+
+
+    locations_passed :  [
+        {
+            Date: {type: Date},
+            Location: [{
+                Longitude: {type: String},
+                Latitude: {type: String}
+            }]
+        }],
+
+    cost: {type: Number, required: true}
+
+
 });
 
 
