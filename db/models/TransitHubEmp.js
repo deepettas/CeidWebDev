@@ -6,10 +6,15 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+// Used for password hashing
+var bcrypt = require('bcryptjs');
+var SALT_WORK_FACTOR = 10;
+
 
 var TransitHubEmpSchema = Schema({
-    username: String,
-    password: String
+    username: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
+    th_id: {type: Schema.ObjectId, required: true}
 });
 
 

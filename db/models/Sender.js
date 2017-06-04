@@ -6,9 +6,13 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+// Used for password hashing
+var bcrypt = require('bcryptjs');
+var SALT_WORK_FACTOR = 10;
+
 
 var SenderSchema = Schema({
-    u
+    
 });
 
 
