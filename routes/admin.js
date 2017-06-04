@@ -123,14 +123,14 @@ router.get('/panel/listTHemp', function(req, res) {
 //transit hub employee add
 router.post('/panel/addTHemp', function(req, res) {
 
-    //Get our form values
-    var userName = req.body.username;
-    var password = req.body.password;
 
-    THemp.insert({
-        "username" : userName,
-        "password" : password
-    }, function (err, doc) {
+    //Create new THemp instance from form
+    var newTHemp = new THemp({
+        username: req.body.username,
+        password: req.body.password
+    });
+
+    newTHemp.save(function (err, doc) {
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );
