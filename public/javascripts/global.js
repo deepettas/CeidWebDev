@@ -73,7 +73,7 @@ function addTHemp(event) {
 
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
-    $('#addUser input').each(function(index, val) {
+    $('#TransitHubEmpAdd input').each(function(index, val) {
         if($(this).val() === '') { errorCount++; }
     });
 
@@ -90,7 +90,7 @@ function addTHemp(event) {
         $.ajax({
             type: 'POST',
             data: newTHemp,
-            url: '/panel/addTHemp',
+            url: '/admin/panel/addTHemp',
             dataType: 'JSON'
         }).done(function( response ) {
 
