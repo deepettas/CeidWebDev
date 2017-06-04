@@ -55,4 +55,4 @@ TransitHubSchema.methods.comparePassword =  function(candidatePassword, cb) {
 
 };
 
-module.exports = mongoose.model("TransitHubEmp", TransitHubSchema);
+module.exports = mongoose.model("TransitHub", TransitHubSchema);
