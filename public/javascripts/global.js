@@ -26,7 +26,7 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/panel/addTHemp', function( data ) {
+    $.getJSON( '/admin/panel/addTHemp', function( data ) {
         // Stick our emp data array into a emplist variable in the global object
         THempListData = data;
         // For each item in our JSON, add a table row and cells to the content string
@@ -133,7 +133,7 @@ function deleteTHemp(event) {
         // If they did, do our delete
         $.ajax({
             type: 'DELETE',
-            url: '/panel/deleteTHemp/' + $(this).attr('rel')
+            url: '/admin/panel/deleteTHemp/' + $(this).attr('rel')
         }).done(function( response ) {
 
             // Check for a successful (blank) response
