@@ -63,7 +63,7 @@ router.get('/login', function (req, res) {
 
 // Admin Login method
 router.post('/login', function (req, res) {
-    console.log(Admins);
+
     if( !req.body.id || !req.body.password ) {
         res.render('admin/loginAdmin', {message: "Please enter both id and password"});
     } else {
