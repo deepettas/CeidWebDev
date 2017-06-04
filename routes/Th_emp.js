@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-//Get the transit hub model
+//Get the transit hub emp model
 var THemp = require('../db/models/TransitHubEmp');
 
 
@@ -32,7 +32,7 @@ router.get('/login', function (req, res) {
 });
 
 
-// Admin Login method
+// THemp Login method
 router.post('/login', function (req, res) {
 
     if( !req.body.id || !req.body.password ) {
