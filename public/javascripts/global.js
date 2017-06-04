@@ -26,14 +26,13 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/admin/panel/addTHemp', function( data ) {
+    $.getJSON( '/admin/panel/listTHemp', function( data ) {
         // Stick our emp data array into a emplist variable in the global object
         THempListData = data;
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td><a href="#" class="linkshowTHemp" rel="' + this.username + '">' + this.username + '</a></td>';
-            tableContent += '<td>' + this.email + '</td>';
             tableContent += '<td><a href="#" class="linkdeleteTHemp" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
@@ -107,8 +106,7 @@ function addTHemp(event) {
             else {
 
                 // If something goes wrong, alert the error message that our service returned
-                //alert('Error: ' + response.msg);
-                console.log(response.msg);
+                alert('Error: ' + response.msg);
 
             }
         });
