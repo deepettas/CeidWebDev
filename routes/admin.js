@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 
 var Admin = require('../db/models/Admin');
-var THemp = require('..db/models/TransitHubEmp');
+var THemp = require('../db/models/TransitHubEmp');
 
 
 
