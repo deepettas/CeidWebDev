@@ -11,6 +11,17 @@ router.get('/panel', checkSignIn, function(req, res) {
 });
 
 
+
+function checkSignIn(req, res, next) {
+    if( req.session.user ) {  // if session exists, proceed to next page
+        next();
+    } else {
+        var err = new Error("Not logged in!");
+        console.log(req.session.user);
+        next(err);  // error trying to access unauthorized page!!! INTRUDER ALERT
+    }
+}
+
 // Show User Login View
 router.get('/login', function (req, res) {
     res.render('Th_emp/Th_emp_login');

@@ -42,8 +42,8 @@ app.use(session({secret: "Your secret key"}));
 // ROUTER LINKING
 app.use('/', index);
 app.use('/admin', admin);
-app.user('/LS', Ls_emp);
-app.user('/TH', Th_emp);
+app.use('/LS', Ls_emp);
+app.use('/TH', Th_emp);
 
 
 
