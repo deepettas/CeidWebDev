@@ -8,7 +8,10 @@ var Schema = mongoose.Schema;
 
 
 var RecipientSchema = Schema({
-
+    tracking_number: {type: String, required: true, unique: true},
+    first_name: { type: String, required: true},
+    last_name: { type: String, required: true},
+    package_id: { type: Schema.ObjectId, ref:'Package', unique: true}
 });
 
 

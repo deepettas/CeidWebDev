@@ -14,7 +14,7 @@ var SALT_WORK_FACTOR = 10;
 var TransitHubEmpSchema = Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    th_id: {type: Schema.ObjectId, required: true}
+    //transit_hub_id: {type: Schema.ObjectId,ref: 'TransitHub', required: true}
 });
 
 
