@@ -29,7 +29,6 @@ router.get('/login', function (req, res) {
 
 // User Login method
 router.post('/login', function (req, res) {
-    console.log(Users);
     if( !req.body.id || !req.body.password ) {
         res.render('Ls_emp/Ls_emp_login', {message: "Please enter both id and password"});
     } else {
